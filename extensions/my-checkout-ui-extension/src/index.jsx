@@ -2,10 +2,7 @@ import React from 'react';
 import {
   render,
   Banner,
-  Text,
-  BlockStack,
   useSettings,
-  useExtensionApi,
 } from '@shopify/checkout-ui-extensions-react';
 
 // Set the entry points for the extension
@@ -20,12 +17,6 @@ function App() {
     status: merchantStatus,
     active,
   } = useSettings();
-
-  const shopApi = useExtensionApi();
-  const { cost } = shopApi;
-  console.log('shop api', shopApi);
-
-  const monthlyPrice = (cost.totalAmount.current.amount / 12).toFixed(2);
 
   // Set a default status for the banner if a merchant didn't configure the banner in the checkout editor
   const status = merchantStatus ?? 'info';

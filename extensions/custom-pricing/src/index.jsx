@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   render,
   Text,
   BlockStack,
+  Spinner,
   useSettings,
   useExtensionApi,
 } from '@shopify/checkout-ui-extensions-react';
@@ -11,21 +12,30 @@ import {
 render('Checkout::Dynamic::Render', () => <App />);
 
 function App() {
-  const [vsxInCart, setVsxInCart] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [vsxInCart, setVsxInCart] = useState(false);
   const { title } = useSettings();
 
   const shopApi = useExtensionApi();
   const { cost, presentmentLines } = shopApi;
   console.log('shop api', shopApi);
 
-  if (presentmentLines.current.length !== 0) {
-    console.log(presentmentLines.current);
+  useEffect(() => {
     setVsxInCart(
       presentmentLines.current.some((item) => item.title.includes('VSX'))
     );
-  }
+    setIsLoading(false);
+  }, []);
 
   const monthlyPrice = (cost.totalAmount.current.amount / 12).toFixed(2);
+
+  if (isLoading) {
+    return (
+      <BlockStack inlineAlignment="end">
+        <Spinner />
+      </BlockStack>
+    );
+  }
 
   if (!vsxInCart) {
     return (
