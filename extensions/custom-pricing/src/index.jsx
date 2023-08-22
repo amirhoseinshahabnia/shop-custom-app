@@ -41,7 +41,7 @@ function App() {
     return (
       <BlockStack inlineAlignment="end">
         <Text size="small">
-          {title}: ${monthlyPrice}/month
+          {title} - ${monthlyPrice}/month
         </Text>
       </BlockStack>
     );
