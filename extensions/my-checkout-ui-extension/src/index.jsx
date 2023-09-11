@@ -11,7 +11,7 @@ import {
   Modal,
   View,
   Button,
-  Heading,
+  Style,
 } from '@shopify/checkout-ui-extensions-react';
 
 // Set the entry points for the extension
@@ -67,51 +67,40 @@ function App() {
     }
 
     return (
-      <>
-        <InlineLayout
-          columns={['25%', 'fill', '20%']}
-          blockAlignment="center"
-          spacing="base"
-          padding="base"
-        >
-          <View position={{ type: 'absolute' }}>
-            <Image source="https://cdn.shopify.com/s/files/1/0266/1649/6190/t/1/assets/splitit-banner-shopify.jpg" />
-          </View>
-          <View></View>
-          <View>
-            <Text size="base" appearance="monochrome">
-              For <Text emphasis="bold">Rent to Own</Text> Choose Splitit Option
-              at the Payment Method Section
-            </Text>
-          </View>
-          <Button
-            overlay={
-              <Modal id="my-modal">
-                <Image source="https://cdn.shopify.com/s/files/1/0266/1649/6190/t/1/assets/Splitit-banner-drums.png" />
-              </Modal>
-            }
-            kind="secondary"
-            appearance="monochrome"
-          >
-            See More
-          </Button>
-        </InlineLayout>
-        <InlineLayout
-          columns={['20%', 'fill']}
-          blockAlignment="center"
-          spacing="large400"
-          padding="base"
-        >
-          <Image source="https://cdn.shopify.com/s/files/1/0791/7866/2207/t/3/assets/logo.svg" />
-          <Text size="extraLarge">
-            For Rent to Own Choose{' '}
-            <Text emphasis="bold" size="extraLarge">
-              Splitit
+      <InlineLayout
+        columns={Style.default(['23%', 'fill', '15%']).when(
+          { viewportInlineSize: { min: 'small' } },
+          ['25%', 'fill', '20%']
+        )}
+        blockAlignment="center"
+        spacing="base"
+        padding="base"
+      >
+        <View position={{ type: 'absolute' }}>
+          <Image source="https://cdn.shopify.com/s/files/1/0239/6012/5504/t/1/assets/SPLITIT%20BANNER%20no%20copy%20large.png" />
+        </View>
+        <View></View>
+        <View>
+          <Text size="small">
+            For{' '}
+            <Text size="small" emphasis="bold">
+              Rent to Own
             </Text>{' '}
-            Option at the Payment Method Section
+            Choose Splitit Option at the Payment Method Section
           </Text>
-        </InlineLayout>
-      </>
+        </View>
+        <Button
+          overlay={
+            <Modal id="my-modal">
+              <Image source="https://cdn.shopify.com/s/files/1/0266/1649/6190/t/1/assets/Splitit-banner-drums.png" />
+            </Modal>
+          }
+          kind="plain"
+          appearance="monochrome"
+        >
+          See More
+        </Button>
+      </InlineLayout>
     );
   }
   return null;

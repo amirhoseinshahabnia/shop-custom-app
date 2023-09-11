@@ -18,7 +18,6 @@ function App() {
 
   const shopApi = useExtensionApi();
   const { cost, presentmentLines } = shopApi;
-  console.log('shop api', shopApi);
 
   useEffect(() => {
     setVsxInCart(
